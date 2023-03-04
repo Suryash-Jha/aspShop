@@ -18,8 +18,9 @@ public class ProductController : Controller
         return View();
     }
 
-    public IActionResult ShowProd(string id){
-        Console.WriteLine(id+id);
+    public IActionResult ShowProd(string id)
+    {
+        Console.WriteLine(id + id);
         return View();
     }
 
@@ -30,13 +31,14 @@ public class ProductController : Controller
         string quantity = product.Quantity;
         string description = product.Description;
         string category = product.Category;
-        if(name=="f")
+        ViewBag.nameVal= name;
+        if (name == "f")
             return RedirectToAction("ShowProd", "Product", new { id = name });
-        // ShowProd(name);
+        // return ShowProd(name);
         // Console.WriteLine(name);
         // Console.WriteLine(price);
 
-        
+
         return View();
     }
 
