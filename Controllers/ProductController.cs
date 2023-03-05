@@ -23,11 +23,13 @@ public class ProductController : Controller
         conn.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM productDetails;", conn);
         MySqlDataReader dr = cmd.ExecuteReader();
+        // Console.WriteLine(dr["productName"]);
         while (dr.Read())
         {
-            Console.WriteLine(dr.GetString(0));
-            Console.WriteLine(dr.GetString(1));
-            Console.WriteLine(dr.GetString(2));
+            Console.WriteLine(dr["productDesc"]);
+            // Console.WriteLine(dr.GetString(0));
+            // Console.WriteLine(dr.GetString(1));
+            // Console.WriteLine(dr.GetString(2));
             // Console.WriteLine(dr.GetString(3));
             // Console.WriteLine(dr.GetString(4));
         }
