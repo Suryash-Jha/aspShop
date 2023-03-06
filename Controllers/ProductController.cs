@@ -52,6 +52,23 @@ public class ProductController : Controller
         string quantity = product.Quantity;
         string description = product.Description;
         string category = product.Category;
+        MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+        conn.Open();
+        if (description != null)
+        // description = "No description";
+        {
+            string query = "INSERT INTO productDetails VALUES (NULL, \"" + name + "\", \"" + category + "\", " + price + ", " + quantity + ", \"" + description + "\")";
+            // "INSERT INTO productDetails VALUES (NULL, \"Check\", \"fish\", 300, 7, \"Yo its working\")"
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            Console.WriteLine(cmd);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            Console.WriteLine(query);
+        }
+        else
+        {
+            Console.WriteLine("No description");
+        }
+
         ViewBag.nameVal = name;
         if (name == "f")
             return RedirectToAction("ShowProd", "Product", new { id = name });
