@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Mysql.data" Version="8.0.32" />
+  </ItemGroup>
+
 </Project>

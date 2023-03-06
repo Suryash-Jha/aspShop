@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/HP/Desktop/aspShop/aspShop.csproj": {}
+    "C:\\Users\\HP\\Desktop\\aspShop\\aspShop.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/HP/Desktop/aspShop/aspShop.csproj": {
+    "C:\\Users\\HP\\Desktop\\aspShop\\aspShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/HP/Desktop/aspShop/aspShop.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\aspShop\\aspShop.csproj",
         "projectName": "aspShop",
-        "projectPath": "/mnt/c/Users/HP/Desktop/aspShop/aspShop.csproj",
-        "packagesPath": "/home/suryash/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/HP/Desktop/aspShop/obj/",
+        "projectPath": "C:\\Users\\HP\\Desktop\\aspShop\\aspShop.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\aspShop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/suryash/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Mysql.data": {
+              "target": "Package",
+              "version": "[8.0.32, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.405/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

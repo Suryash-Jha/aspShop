@@ -1,9 +1,49 @@
+<style>
+    .container{
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid black;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    input{
+        padding: 10px;
+        margin: 10px;
+        height: 50px;
+    }
+    .flexChild{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+</style>
+
 <h1>Hye @ViewBag.nameVal;</h1>
+
 <form method="post" runat="server">
+<div class="container">
+<div class="flexChild">
 Name: <input type="text" id="Name" name="Name" runat="server" />
+</div>
+<div class="flexChild">
 Price: <input type="text" id="Price" name="Price" runat="server" />
+</div>
+<div class="flexChild">
 Quantity: <input type="text" id="Quantity" name="Quantity" runat="server" />
+</div>
+<div class="flexChild">
 Description: <input type="text" id="Description" name="Description" runat="server" />
+</div>
+<div class="flexChild">
 Category: <input type="text" id="Category" name="Category" runat="server" />
+</div>
 <input type="submit" value="Submit" />
+
+</div>
 </form>
