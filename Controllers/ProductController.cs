@@ -59,10 +59,17 @@ public class ProductController : Controller
         {
             string query = "INSERT INTO productDetails VALUES (NULL, \"" + name + "\", \"" + category + "\", " + price + ", " + quantity + ", \"" + description + "\")";
             // "INSERT INTO productDetails VALUES (NULL, \"Check\", \"fish\", 300, 7, \"Yo its working\")"
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            Console.WriteLine(cmd);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            Console.WriteLine(query);
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                Console.WriteLine(cmd);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                Console.WriteLine("Success");
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+            }
         }
         else
         {
