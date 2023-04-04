@@ -15,44 +15,65 @@ public class ProductController : Controller
     }
 
 
-          // to store data in Datatable
+    // to store data in Datatable
 
 
 
 
-                // using MySql.Data.MySqlClient;
-                // using System.Data;
+            // using MySql.Data.MySqlClient;
+            // using System.Data;
 
-                // public DataTable ExecuteQuery(string connectionString, string query)
-                // {
-                //     DataTable dataTable = new DataTable();
-                    
-                //     using (MySqlConnection connection = new MySqlConnection(connectionString))
-                //     {
-                //         connection.Open();
-                        
-                //         using (MySqlCommand command = new MySqlCommand(query, connection))
-                //         {
-                //             using (MySqlDataReader dataReader = command.ExecuteReader())
-                //             {
-                //                 dataTable.Load(dataReader);
-                //             }
-                //         }
-                        
-                //         connection.Close();
-                //     }
-                    
-                //     return dataTable;
-                // }
+            // public DataTable ExecuteQuery(string connectionString, string query)
+            // {
+            //     DataTable dataTable = new DataTable();
+
+            //     using (MySqlConnection connection = new MySqlConnection(connectionString))
+            //     {
+            //         connection.Open();
+
+            //         using (MySqlCommand command = new MySqlCommand(query, connection))
+            //         {
+            //             using (MySqlDataReader dataReader = command.ExecuteReader())
+            //             {
+            //                 dataTable.Load(dataReader);
+            //             }
+            //         }
+
+            //         connection.Close();
+            //     }
+
+            //     return dataTable;
+            // }
 
 
 
-        // END
-    public MySqlDataReader resultOfCall(){
+    // END
+
+
+    // To Read data out of Datatable
+
+            //         DataTable dataTable = ExecuteQuery(connevtionString, "SELECT * FROM productDetails;");
+
+            // foreach (DataRow row in dataTable.Rows)
+            // {
+            //     // Iterate through each column in the current row
+            //     foreach (DataColumn col in dataTable.Columns)
+            //     {
+            //         // Access the value of the current cell
+            //         object cellValue = row[col];
+
+            //         // Do something with the cell value
+            //         Console.WriteLine($"{col.ColumnName}: {cellValue}");
+            //     }
+            // }
+
+    // END
+    public MySqlDataReader resultOfCall()
+    {
         // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
 
         // MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
-         MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+        MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
         conn.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM productDetails;", conn);
         MySqlDataReader dr = cmd.ExecuteReader();
@@ -76,9 +97,9 @@ public class ProductController : Controller
     }
     public IActionResult Index()
     {
-                 MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+        MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
 
-        var res= resultOfCall(conn);
+        var res = resultOfCall(conn);
         while (res.Read())
         {
             Console.WriteLine(res["productDesc"]);
