@@ -14,28 +14,101 @@ public class ProductController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
-    {
-        MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+
+          // to store data in Datatable
+
+
+
+
+                // using MySql.Data.MySqlClient;
+                // using System.Data;
+
+                // public DataTable ExecuteQuery(string connectionString, string query)
+                // {
+                //     DataTable dataTable = new DataTable();
+                    
+                //     using (MySqlConnection connection = new MySqlConnection(connectionString))
+                //     {
+                //         connection.Open();
+                        
+                //         using (MySqlCommand command = new MySqlCommand(query, connection))
+                //         {
+                //             using (MySqlDataReader dataReader = command.ExecuteReader())
+                //             {
+                //                 dataTable.Load(dataReader);
+                //             }
+                //         }
+                        
+                //         connection.Close();
+                //     }
+                    
+                //     return dataTable;
+                // }
+
+
+
+        // END
+    public MySqlDataReader resultOfCall(){
         // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
 
         // MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+         MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
         conn.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM productDetails;", conn);
         MySqlDataReader dr = cmd.ExecuteReader();
         // Console.WriteLine(dr["productName"]);
-        while (dr.Read())
+        var storage = dr;
+        // while (dr.Read())
+        // {
+        //     x.Add(dr);
+        //     Console.WriteLine(dr["productDesc"]);
+        //     // Console.WriteLine(dr.GetString(0));
+        //     // Console.WriteLine(dr.GetString(1));
+        //     // Console.WriteLine(dr.GetString(2));
+        //     // Console.WriteLine(dr.GetString(3));
+        //     // Console.WriteLine(dr.GetString(4));
+        // }
+        dr.Close();
+        cmd.Dispose();
+        conn.Close();
+        return storage;
+
+    }
+    public IActionResult Index()
+    {
+                 MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+
+        var res= resultOfCall(conn);
+        while (res.Read())
         {
-            Console.WriteLine(dr["productDesc"]);
+            Console.WriteLine(res["productDesc"]);
             // Console.WriteLine(dr.GetString(0));
             // Console.WriteLine(dr.GetString(1));
             // Console.WriteLine(dr.GetString(2));
             // Console.WriteLine(dr.GetString(3));
             // Console.WriteLine(dr.GetString(4));
         }
-        dr.Close();
-        cmd.Dispose();
-        conn.Close();
+        // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+        // // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
+
+        // // MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=shopApp;port=3306;password=Lion@123");
+        // conn.Open();
+        // MySqlCommand cmd = new MySqlCommand("SELECT * FROM productDetails;", conn);
+        // MySqlDataReader dr = cmd.ExecuteReader();
+        // // Console.WriteLine(dr["productName"]);
+
+        // while (dr.Read())
+        // {
+        //     Console.WriteLine(dr["productDesc"]);
+        //     // Console.WriteLine(dr.GetString(0));
+        //     // Console.WriteLine(dr.GetString(1));
+        //     // Console.WriteLine(dr.GetString(2));
+        //     // Console.WriteLine(dr.GetString(3));
+        //     // Console.WriteLine(dr.GetString(4));
+        // }
+        // dr.Close();
+        // cmd.Dispose();
+        // conn.Close();
         return View();
     }
 
