@@ -83,35 +83,114 @@ string connectionString = "your_connection_string_here";
 string query = "SELECT * FROM users WHERE username=@username AND password=@password";
 
 // Create a SqlConnection object
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            // Create a SqlCommand object with the parameterized query
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                // Add SqlParameter objects for each parameter in the query
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
+        // using (SqlConnection connection = new SqlConnection(connectionString))
+        // {
+        //     // Create a SqlCommand object with the parameterized query
+        //     using (SqlCommand command = new SqlCommand(query, connection))
+        //     {
+        //         // Add SqlParameter objects for each parameter in the query
+        //         command.Parameters.AddWithValue("@username", username);
+        //         command.Parameters.AddWithValue("@password", password);
                 
-                // Open the database connection
-                connection.Open();
+        //         // Open the database connection
+        //         connection.Open();
                 
-                // Execute the query and retrieve the results
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    // Check if any rows were returned
-                    if (reader.HasRows)
-                    {
-                        // Login successful
-                    }
-                    else
-                    {
-                        // Login failed
-                    }
-                }
-            }
-        }
+        //         // Execute the query and retrieve the results
+        //         using (SqlDataReader reader = command.ExecuteReader())
+        //         {
+        //             // Check if any rows were returned
+        //             if (reader.HasRows)
+        //             {
+        //                 // Login successful
+        //             }
+        //             else
+        //             {
+        //                 // Login failed
+        //             }
+        //         }
+        //     }
+        // }
 
 //END
+
+
+// To make sql query execution modular
+
+// using System;
+// using System.Collections.Generic;
+// using System.Data;
+// using System.Data.SqlClient;
+
+// namespace YourNamespace
+// {
+//     public static class SqlQueryExecutor
+//     {
+//         private static string _connectionString = "your_connection_string";
+
+//         public static List<T> ExecuteQuery<T>(string sql, Func<IDataReader, T> readerFunc, params SqlParameter[] parameters)
+//         {
+//             using (var connection = new SqlConnection(_connectionString))
+//             {
+//                 using (var command = new SqlCommand(sql, connection))
+//                 {
+//                     foreach (var parameter in parameters)
+//                     {
+//                         command.Parameters.Add(parameter);
+//                     }
+
+//                     connection.Open();
+//                     using (var reader = command.ExecuteReader())
+//                     {
+//                         var result = new List<T>();
+//                         while (reader.Read())
+//                         {
+//                             var item = readerFunc(reader);
+//                             result.Add(item);
+//                         }
+//                         return result;
+//                     }
+//                 }
+//             }
+//         }
+
+//         public static int ExecuteNonQuery(string sql, params SqlParameter[] parameters)
+//         {
+//             using (var connection = new SqlConnection(_connectionString))
+//             {
+//                 using (var command = new SqlCommand(sql, connection))
+//                 {
+//                     foreach (var parameter in parameters)
+//                     {
+//                         command.Parameters.Add(parameter);
+//                     }
+
+//                     connection.Open();
+//                     return command.ExecuteNonQuery();
+//                 }
+//             }
+//         }
+
+//         public static object ExecuteScalar(string sql, params SqlParameter[] parameters)
+//         {
+//             using (var connection = new SqlConnection(_connectionString))
+//             {
+//                 using (var command = new SqlCommand(sql, connection))
+//                 {
+//                     foreach (var parameter in parameters)
+//                     {
+//                         command.Parameters.Add(parameter);
+//                     }
+
+//                     connection.Open();
+//                     return command.ExecuteScalar();
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+// END
     public MySqlDataReader resultOfCall()
     {
         // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
