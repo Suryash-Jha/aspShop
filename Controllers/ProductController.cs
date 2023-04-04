@@ -191,6 +191,31 @@ string query = "SELECT * FROM users WHERE username=@username AND password=@passw
 
 
 // END
+
+
+// Sha256 Hash
+
+        // using System.Security.Cryptography;
+        // using System.Text;
+
+        // public static string HashPassword(string password)
+        // {
+        //     using (SHA256 sha256 = SHA256.Create())
+        //     {
+        //         // Convert the password string to a byte array
+        //         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+        //         // Compute the hash value of the password bytes
+        //         byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+
+        //         // Convert the hash byte array to a string
+        //         string hash = BitConverter.ToString(hashBytes).Replace("-", "");
+
+        //         return hash;
+        //     }
+        // }
+
+// END
     public MySqlDataReader resultOfCall()
     {
         // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
