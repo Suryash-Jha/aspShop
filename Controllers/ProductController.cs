@@ -68,6 +68,50 @@ public class ProductController : Controller
             // }
 
     // END
+
+
+
+    // To use parametrized sql commands 
+
+    using System.Data.SqlClient;
+
+// ...
+
+string connectionString = "your_connection_string_here";
+
+// Define the query with parameter placeholders
+string query = "SELECT * FROM users WHERE username=@username AND password=@password";
+
+// Create a SqlConnection object
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            // Create a SqlCommand object with the parameterized query
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add SqlParameter objects for each parameter in the query
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                
+                // Open the database connection
+                connection.Open();
+                
+                // Execute the query and retrieve the results
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    // Check if any rows were returned
+                    if (reader.HasRows)
+                    {
+                        // Login successful
+                    }
+                    else
+                    {
+                        // Login failed
+                    }
+                }
+            }
+        }
+
+//END
     public MySqlDataReader resultOfCall()
     {
         // MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=studentData;port=3306;password=Lion@123");
